@@ -1,22 +1,42 @@
-pipeline{
+pipeline {
+agent {
+label {
+label 'built-in'
+customWorkspace '/data/pipeline'
 
-agent any
+}
+}
 
 stages {
-
-stage ('stage1-Hello')
+stage ('install-Apache-httpd')
 {
 steps {
-echo "Hello World"
-
-}
-
-
-
+sh "yum install httpd -y"
 
 }
 
 }
 
+stage ('deploy-index')
 
+{
+steps {
+sh "cp -r index.html /var/www/html"
+sh "chmod -R 777 /var/www/index/index.html"
+
+}
+
+}
+
+stage ('Restart-Apache-httpd')
+{
+steps {
+sh "systemctl restart httpd"
+
+
+}
+
+}
+
+}
 }

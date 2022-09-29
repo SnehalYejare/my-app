@@ -8,14 +8,14 @@ customWorkspace '/data/pipeline'
 }
 
 stages {
-stage ('install-Apache-httpd')
-{
-steps {
-sh "yum install httpd -y"
+//stage ('install-Apache-httpd')
+//{
+//steps {
+//sh "yum install httpd -y"
 
-}
+//}
 
-}
+//}
 
 stage ('deploy-index')
 
